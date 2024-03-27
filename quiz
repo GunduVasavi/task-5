@@ -1,0 +1,58 @@
+import random
+
+# Define quiz questions and answers
+quiz_questions = [
+    {
+        "question": "What is the capital of France?",
+        "options": ["A. London", "B. Paris", "C. Rome", "D. Berlin"],
+        "answer": "B"
+    },
+    {
+        "question": "Who wrote 'To Kill a Mockingbird'?",
+        "options": ["A. Harper Lee", "B. Mark Twain", "C. J.K. Rowling", "D. Ernest Hemingway"],
+        "answer": "A"
+    },
+    {
+        "question": "The tallest mammal in the world is the ___________.",
+        "answer": "giraffe"
+    }
+]
+
+def display_welcome_message():
+    print("Welcome to the Quiz Game!")
+    print("Answer multiple-choice or fill-in-the-blank questions on various topics.")
+
+def present_quiz_questions():
+    score = 0
+    total_questions = len(quiz_questions)
+
+    for question in quiz_questions:
+        print("\nQuestion:", question["question"])
+
+        if "options" in question:
+            for option in question["options"]:
+                print(option)
+            user_answer = input("Enter your answer (A/B/C/D): ").upper()
+        else:
+            user_answer = input("Enter your answer: ").lower()
+
+        if user_answer == question.get("answer", "").upper() or user_answer == question.get("answer", "").lower():
+            print("Correct!")
+            score += 1
+        else:
+            print("Incorrect. The correct answer is:", question.get("answer"))
+
+    print("\nYour Final Score:", score, "out of", total_questions)
+
+    play_again = input("Do you want to play again? (yes/no): ").lower()
+    if play_again == "yes":
+        present_quiz_questions()
+    else:
+        print("Thank you for playing!")
+
+def main():
+    display_welcome_message()
+    present_quiz_questions()
+
+if __name__ == "__main__":
+    main()
